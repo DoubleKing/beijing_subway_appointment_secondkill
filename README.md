@@ -26,19 +26,22 @@
 
 ### 第二步配置
 
-把第二步中获取的authorization配置到config.json中，并且配置抢预约的时间和地铁站
+1.把第二步中获取的authorization配置到config.json中，并且配置抢预约的时间和地铁站。
 
-`{
-  "start_time": "11:59:59.500",
-  "next_day_end_time": "07:20:00.000",
-  "authorization": [
-    "ABCDYzM0MGEtODQzOC00NjlkLTljODMtZWZlZTZhZTYwMTRmLDE2MTE1MjYxNzk1NDMsZ0k5SktCM2Q0Q0dRb1lWZzdGWVZ1WHpnakNRPQ==",
-    "EFGHZDBhMTEtMmM2MC00OGI2LTg3MGMtNjE3N2Q0NjlhNjIxLDE2MTA5NzE3MDUwOTIsTXFIeHlKb2JMRFovSTcrQnpPNFRkdXhzSTc4PQ=="
-  ],
-  "timeSlot": "0740-0810",
-  "lineName": "昌平线",
-  "stationName": "沙河站"
-}`
+2.可以配置多个authorization。
+
+| {    |                                                              |
+| ---- | ------------------------------------------------------------ |
+|      | "start_time": "11:59:59.500",                                |
+|      | "next_day_end_time": "07:20:00.000",                         |
+|      | "authorization": [                                           |
+|      | "ABCDYzM0MGEtODQzOC00NjlkLTljODMtZWZlZTZhZTYwMTRmLDE2MTA2OTI1MDM5ODAsLytvZ0llemk5SFFqbnhGWm1jRCs2RDdneVpnPQ==", |
+|      | "EFGHZDBhMTEtMmM2MC00OGI2LTg3MGMtNjE3N2Q0NjlhNjIxLDE2MTA5NzE3MDUwOTIsTXFIeHlKb2JMRFovSTcrQnpPNFRkdXhzSTc4PQ==" |
+|      | ],                                                           |
+|      | "timeSlot": "0740-0810",                                     |
+|      | "lineName": "昌平线",                                        |
+|      | "stationName": "沙河站"                                      |
+| }    |                                                              |
 
 
 
