@@ -8,7 +8,8 @@ import requests
 import json
 from datetime import date, timedelta
 import random
-
+from urllib import unquote
+from requests_toolbelt.utils import dump
 import sys
 
 reload(sys)
@@ -24,8 +25,7 @@ def create_appointment(authorization, tomorrow, timeSlot):
 				"enterDate": tomorrow, "snapshotTimeSlot": "0630-0930", "timeSlot": timeSlot}
 	data = json.dumps(data_dic)
 	r = requests.post('https://webapi.mybti.cn/Appointment/CreateAppointment', headers=headers, data=data)
-	print r.status_code
-	print r.text
+	g_logger.info(dump.dump_all(r).decode('utf-8'))
 
 
 # [{"timeSlotQueryString":"沙河站-20210115-0740-0750","balance":0,"status":1,"appointmentId":null},{"timeSlotQueryString":"沙河站-20210115-0750-0800","balance":0,"status":1,"appointmentId":null},{"timeSlotQueryString":"沙河站-20210115-0800-0810","balance":0,"status":1,"appointmentId":null}]
@@ -40,7 +40,7 @@ def is_has_appointment(res):
 def create_appointment_if_has_balance(res, authorization, tomorrow):
 	length = len(res)
 	for r in res:
-		if r["balance"] or ["status"] != 1:
+		if r["balance"] or r["status"] != 1:
 			timeSlot = r["timeSlotQueryString"][-9:]
 			create_appointment(authorization, tomorrow, timeSlot)
 
@@ -56,7 +56,7 @@ def get_balance(authorization, tomorrow):
 		data = json.dumps(data_dic)
 		r = requests.post('https://webapi.mybti.cn/Appointment/GetBalance', headers=headers, data=data)
 		# print r.status_code
-		print r.text
+		g_logger.info(dump.dump_all(r).decode('utf-8'))
 		if r.status_code != 200:
 			return False
 		res = json.loads(r.text)
