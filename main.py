@@ -40,7 +40,7 @@ def is_has_appointment(res):
 def create_appointment_if_has_balance(res, authorization, tomorrow):
 	length = len(res)
 	for r in res:
-		if r["balance"] or r["status"] != 1:
+		if r["balance"] > 0:
 			timeSlot = r["timeSlotQueryString"][-9:]
 			create_appointment(authorization, tomorrow, timeSlot)
 
